@@ -1,0 +1,47 @@
+<section class="font-extrabold  text-5xl justify-center items-center flex flex-col">
+    <div class=" flex w-full    " >
+        <svg 
+            class="w-40"  
+            viewBox="-20 0 300 120"
+            xmlns="http://www.w3.org/2000/svg" 
+        >
+            <path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"  fill = "none">
+            </path>
+            <text class="text" text-anchor="middle">
+                <textPath class="text__path" href="#curve" startOffset="50%">
+                    LIGA RANK                     
+                </textPath>
+            </text>
+        </svg>
+    </div>
+    <div>
+        KING
+    </div>
+    <div class="circle-container">
+        <div class="circle-text">
+          Texto en el sector circular
+        </div>
+      </div>
+</section>
+<style>
+ .circle-container {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+  border-radius: 50%;
+  position: relative;
+}
+
+.circle-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+  shape-outside: circle(50%); /* Esta línea hace que el texto siga el borde del círculo */
+}
+</style>
