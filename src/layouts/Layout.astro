@@ -1,4 +1,6 @@
 ---
+import Header from '@/components/Header.astro';
+
 interface Props {
 	title: string;
 }
@@ -16,13 +18,111 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body
+		class="overflow-x-hidden selection:bg-primary selection:text-secondary [&_:focus-visible]:outline-none [&_:focus-visible]:ring-2 [&_:focus-visible]:ring-primary"
+	>
+		<a
+			href="#main-content"
+			class=" anchor-main-content fixed top-0 z-20 rounded-br-md bg-secondary px-3 py-5 text-primary opacity-0 focus:opacity-100"
+			>Saltar al contenido principal</a
+		>	
+		<Header/>
+		<div
+			class="mx-auto min-h-screen max-w-6xl px-2 pt-16 selection:bg-primary selection:text-secondary md:pt-20 lg:px-10"
+			id="main-content"
+		>
+			<slot />
+						<!-----------------------------
+				`    ``               `
+				``  _ `      `       ``
+				`   |_| `  `` ``    `  `
+				``  -___-_` `   ` --------------
+			``   /      )      | This is fine |`
+			`____/| (0) (0)_()  |/-------------  `
+			/|   | |   ^____)      ``      ``
+			||   |_|    \_//     Uɔ````   `` ``
+			||    || |    |    ========`  ``  ``
+			||    || |    |      ||     ``   `
+			||     \\_\   |\     ||   ```    `
+			=========||====||    ||  ``       `
+			|| ||   \Ɔ || \Ɔ   ||   ``    ``
+			|| ||      ||      ||  `     ``
+			--------------------------------->
+		</div>
 	</body>
 </html>
 <style is:global>
+	:root {
+		--color-primary: #ddd;
+		--color-secondary: #333;
+		--color-accent: #cd0202;
+		--color-accent-rgb: 213, 255, 0;
+
+		--background-color: #000e18;
+		--background-twitch: var(--color-twitch-ice);
+
+		--color-twitch: #0f7a21;
+		--color-twitch-ice: #f0f0ff;
+	}
+
+	@font-face {
+		font-family: Atomic;
+		font-display: swap;
+		src: url("https://cdn.lavelada.dev/fonts/font-atomic.woff2") format("woff2");
+	}
+
 	html {
 		font-family: "Jost Variable", system-ui, sans-serif;
-		background: #ddd;
+		background: var(--background-color);
+		scrollbar-gutter: stable;
+	}
+
+	main {
+		position: relative;
+	}
+
+	body {
+		&:has(dialog[open]) {
+			overflow: hidden;
+		}
+	}
+
+	/* Hiding class, making content visible only to screen readers but not visually */
+	/* "sr" meaning "screen-reader" */
+	.sr-only:not(:focus):not(:active) {
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+
+	@supports selector(::-webkit-scrollbar) {
+		::-webkit-scrollbar {
+			width: 10px;
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb:active {
+			background-color: #666;
+		}
+
+		::-webkit-scrollbar-track {
+			background: var(--background-image);
+		}
+
+		::-webkit-scrollbar-corner {
+			background: var(--background-image);
+		}
+	}
+	
+	.anchor-main-content {
+		pointer-events: none;
+	}
+
+	.anchor-main-content:focus {
+		pointer-events: all;
 	}
 </style>
